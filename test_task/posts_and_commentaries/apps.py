@@ -1,5 +1,5 @@
+"Модуль для регистрации приложений"
 from django.apps import AppConfig
-
 
 class PostsAndCommentariesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'

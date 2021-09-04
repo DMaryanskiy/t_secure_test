@@ -1,11 +1,12 @@
 "Модуль, который содержит сериализаторы"
+from django.contrib import auth
 from rest_framework import serializers
 from rest_framework.relations import StringRelatedField
-from .models import Post, User
+from .models import Post, User, Comment
 
 class PostSerializer(serializers.ModelSerializer):
     "Сериализатор постов"
-    user = StringRelatedField()
+    author = StringRelatedField()
 
     class Meta:
         "Мета-класс сериализатора с описанием модели и полей"
@@ -28,3 +29,14 @@ class UserSerializer(serializers.ModelSerializer):
         "Мета-класс сериализатора с описанием модели и полей"
         model = User
         fields = ("id", "username", "email", "password")
+
+class CommentSerializer(serializers.ModelSerializer):
+    "Сериализатор комментариев"
+    author = StringRelatedField()
+    post = StringRelatedField()
+    comment = StringRelatedField()
+
+    class Meta:
+        "Мета-класс сериализатора с описанием модели и полей"
+        model = Comment
+        fields = "__all__"

@@ -1,7 +1,9 @@
 "Модуль для тестирования моделей"
+
 from django.test import TestCase
 
 from ..models import Post, Comment, User
+
 
 class PostModelTest(TestCase):
     @classmethod
@@ -17,7 +19,7 @@ class PostModelTest(TestCase):
             post=cls.post,
             text="Тестовый коммент"
         )
-    
+
     def test_models_have_correct_object_names(self):
         "Проверка корректности __str__"
         self.assertEqual(str(self.post), "Тестовый пост")

@@ -1,7 +1,9 @@
 "Модуль для тестирования url-адресов"
+
 from django.test import TestCase, Client
 
 from ..models import Post, Comment, User
+
 
 class StaticURLTests(TestCase):
     @classmethod
@@ -36,7 +38,7 @@ class StaticURLTests(TestCase):
 
         self.authorized_client = Client()
         self.authorized_client.force_login(self.seconduser)
-    
+
     def test_register(self):
         "Проверка возможности зарегистрироваться"
         response = self.guest_client.post(
@@ -57,7 +59,7 @@ class StaticURLTests(TestCase):
             }
         )
         self.assertEqual(response.status_code, 400)
-    
+
     def test_pages_unauthorized(self):
         "Проверка доступности страниц для неавторизованного пользователя"
         pages_codes = {
@@ -92,7 +94,7 @@ class StaticURLTests(TestCase):
                 self.assertEqual(response.status_code, code)
                 response = self.authorized_client.delete(address)
                 self.assertEqual(response.status_code, code)
-    
+
     def test_editing_owner(self):
         """
         Проверка возможности редактирования и удаления объекта
@@ -109,14 +111,14 @@ class StaticURLTests(TestCase):
                     {
                         "text": "New text"
                     },
-                    content_type = 'application/json'
+                    content_type='application/json'
                 )
                 self.assertEqual(response.status_code, code[0])
                 response = self.owner.put(address)
                 self.assertEqual(response.status_code, code[2])
                 response = self.owner.delete(address)
                 self.assertEqual(response.status_code, code[1])
-    
+
     def test_creating(self):
         "Проверка возможности создания объекта"
         pages_codes = {

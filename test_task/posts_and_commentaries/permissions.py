@@ -1,9 +1,9 @@
 "Модуль для определения собственных пермиссий"
+
 from rest_framework import status, permissions
 from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 
-from .models import User
 
 class IsOwnerOrReadOnly(BasePermission):
     "Уровень доступа 'Владелец или только для чтения'"

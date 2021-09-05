@@ -1,4 +1,5 @@
 "Модуль, который содержит url-адреса функций внутри приложения"
+
 from django.urls import path
 
 from .views import (

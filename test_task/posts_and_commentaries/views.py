@@ -1,15 +1,20 @@
 "Модуль, который содержит все дженерики"
 from rest_framework import generics, permissions
+
 from django.shortcuts import get_object_or_404
 
 from .serializers import CommentSerializer, PostSerializer, UserSerializer
+
 from .models import Post, User, Comment
+
 from .permissions import IsOwnerOrReadOnly
+
 
 class PostListAPI(generics.ListAPIView):
     "Класс для вывода списка всех постов"
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
 
 class PostCreateAPI(generics.CreateAPIView):
     "Класс для создания новой записи в таблице Post"
@@ -18,6 +23,7 @@ class PostCreateAPI(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         return serializer.save(author=self.request.user)
+
 
 class PostUpdateDeleteAPI(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -31,10 +37,12 @@ class PostUpdateDeleteAPI(generics.RetrieveUpdateDestroyAPIView):
     def perform_update(self, serializer):
         return serializer.save(author=self.request.user)
 
+
 class UserCreateView(generics.CreateAPIView):
     "Класс для создания пользователя"
     model = User
     serializer_class = UserSerializer
+
 
 class CommentCreateAPI(generics.CreateAPIView):
     "Класс для создания комментариев"
@@ -53,6 +61,7 @@ class CommentCreateAPI(generics.CreateAPIView):
             post=get_object_or_404(Post, pk=self.kwargs.get("pk")),
         )
 
+
 class CommentRetrieveAPI(generics.RetrieveUpdateDestroyAPIView):
     "Класс для просмотра, обновления и удаления комментария"
     permission_classes = [IsOwnerOrReadOnly]
@@ -60,8 +69,7 @@ class CommentRetrieveAPI(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         post = get_object_or_404(Post, pk=self.kwargs.get("post_id"))
-        queryset = Comment.objects.filter(post=post)
-        return queryset
-    
+        return Comment.objects.filter(post=post)
+
     def perform_update(self, serializer):
         return serializer.save(author=self.request.user)

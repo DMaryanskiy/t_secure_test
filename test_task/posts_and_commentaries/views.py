@@ -2,7 +2,6 @@
 from rest_framework import generics, permissions
 
 from django.shortcuts import get_object_or_404
-
 from .serializers import CommentSerializer, PostSerializer, UserSerializer
 from .models import Post, User, Comment
 from .permissions import IsOwnerOrReadOnly

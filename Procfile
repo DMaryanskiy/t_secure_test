@@ -1,1 +1,1 @@
-web: python test_task/manage.py runserver
+web: gunicorn test_task.test_task.wsgi

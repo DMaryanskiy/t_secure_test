@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-import django_heroku
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -31,7 +30,7 @@ SECRET_KEY = 'django-insecure-v*$ebh0p!b8g9op!36zg+b!vs8dz@la%nhw9o3k*z$pyge#x*1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://t-secure-test-task.herokuapp.com/"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -137,5 +136,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_heroku.settings(locals())

@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-v*$ebh0p!b8g9op!36zg+b!vs8dz@la%nhw9o3k*z$pyge#x*1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://t-secure-test-task.herokuapp.com/"]
 
 
 # Application definition

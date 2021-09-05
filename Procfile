@@ -1,1 +1,1 @@
-worker: python test_task/manage.py runserver
+web: python test_task/manage.py runserver

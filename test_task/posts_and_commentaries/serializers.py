@@ -1,5 +1,4 @@
 "Модуль, который содержит сериализаторы"
-from django.contrib import auth
 from rest_framework import serializers
 from rest_framework.relations import StringRelatedField
 from .models import Post, User, Comment
